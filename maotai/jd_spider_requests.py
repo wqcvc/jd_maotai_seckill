@@ -330,7 +330,7 @@ class JdSeckill(object):
         self._seckill()
 
     @check_login
-    def seckill_by_proc_pool(self, work_count=5):
+    def seckill_by_proc_pool(self, work_count=8):
         """
         多进程进行抢购
         work_count：进程数量
@@ -381,7 +381,7 @@ class JdSeckill(object):
         resp = self.session.get(url=url, params=payload, headers=headers)
         resp_json = parse_json(resp.text)
         reserve_url = resp_json.get('url')
-        self.timers.start()
+        # self.timers.start()
         while True:
             try:
                 self.session.get(url='https:' + reserve_url)
